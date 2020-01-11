@@ -1,0 +1,61 @@
+.Home{
+  width: 100%;
+  height: 700px;
+  margin: auto;
+  background-image: url("./img/main-2.png");
+  background-size: cover;
+
+}
+
+.SignIn, .SignUp{
+
+}
+
+.loginForm{
+  width: 20%;
+  min-width: 300px;
+  max-width: 600px;
+  background: linear-gradient(45deg, pink, lightskyblue);
+  padding: 5%;
+  margin: 20px 50px;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+input{
+  opacity: 0.7;
+  background: ghostwhite;
+  width: 80%;
+  border: none;
+  height: 35px;
+  border-radius: 25px;
+  margin: 10px auto;
+  display: block;
+
+}
+
+label{
+  font-size: 25px;
+  margin: 10px 10px 0 0;
+}
+input:checked + label { text-decoration: underline pink; color: white;}
+
+.SignIn label, .SignUp label{
+  font-size: 15px;
+  margin: 10px 60px;
+  display: block;
+}
+
+.Home button{
+  background: cadetblue;
+  width: 80%;
+  border: none;
+  height: 35px;
+  border-radius: 25px;
+  margin: 35px auto;
+  display: block;
+  font-size: 20px;
+  color: white;
+}
