@@ -1,0 +1,35 @@
+{
+  "name": "back",
+  "version": "0.1.0",
+  "description": "Flower store",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --reporter tap"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.1",
+    "body-parser": "^1.19.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.5",
+    "express": "^4.17.1",
+    "mocha": "^3.3.0",
+    "mongodb": "^3.4.1",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "pg-promise": "^10.3.1",
+    "pug": "^2.0.4"
+  },
+  "engines": {
+    "ejs": "2.5.5"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Alina Shaykhutdinova",
+  "license": ""
+}
