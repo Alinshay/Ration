@@ -1,15 +1,22 @@
 import { reducer as formReducer } from 'redux-form';
 import { combineReducers } from 'redux';
-
+import {ENTRANCE} from '../actions/action-types';
 
 const initState = {
-    logIn: false,
+    signed: false,
+    login: ''
 };
 
 
-const Reducer1 = (state = initState, action) => { return state;}
+const Reducer1 = (state = initState, action) => {
 
-const Reducer2 = (state = initState, action) => { return state;}
+    if(action.type === ENTRANCE)
+        return{...state, login: action.login, signed: true};
+
+    return state;
+};
+
+const Reducer2 = (state = initState, action) => { return state;};
 
 
 
