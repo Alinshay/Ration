@@ -3,19 +3,21 @@ import { connect } from 'react-redux';
 import LogIn from './SignIn'
 import Register from "./SignUp";
 import LoginForm from "./LoginFrom";
+import PersonalAccount from "./PersonalAccount";
 
 
 
 class Home extends React.Component {
 
+
     render(){
-        if(this.props.signed === false)
+        if(this.props.signed === 0)
         return(
             <div className="Home">
                 <LoginForm/>
             </div>
         );
-        else return(<h1>Personal Account {this.props.login}</h1>)
+        else return( <PersonalAccount/>)
     }
 
 }

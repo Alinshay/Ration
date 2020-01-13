@@ -1,5 +1,6 @@
 import {
-    ENTRANCE
+    ENTRANCE,
+    EXIT
 } from './action-types';
 
 
@@ -10,6 +11,18 @@ export function signIn(login) {
     };
 }
 
+function signOut() {
+    return {
+        type: EXIT
+    };
+}
+
+export function tryExit() {
+    return (dispatch) => {
+        document.cookie = `login=''`; document.cookie = `signed=0`;
+        dispatch(signOut());
+    }
+}
 
 
 export function trySignIn(login, password) {
@@ -20,7 +33,9 @@ export function trySignIn(login, password) {
          .then((response) => response.json())
          .then ((response) => response.forEach( item =>
              {if((item.login === login)&&(item.password === password))
-             dispatch(signIn(login));}));
+             {dispatch(signIn(login)); document.cookie = `login=${login}`; document.cookie = `signed=1`;}}));
 
     }
 }
+
+/*добавить сообщение об ошибке, если вход не выполнен*/
