@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import { Field, reduxForm} from 'redux-form';
+import {trySignUp} from "../actions/actions";
 
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
@@ -72,7 +73,7 @@ class SignUp extends React.Component {
     }
 
     submit(values) {
-
+        this.props.trySighUp(values.email, values.password);
     }
 
     render(){
@@ -92,6 +93,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        trySighUp: (login, password) => dispatch(trySignUp(login,password)),
     };
 };
 

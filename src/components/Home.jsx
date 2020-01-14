@@ -17,7 +17,7 @@ class Home extends React.Component {
                 <LoginForm/>
             </div>
         );
-        else return( <PersonalAccount/>)
+        else return( <PersonalAccount/> )
     }
 
 }

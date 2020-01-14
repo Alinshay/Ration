@@ -14,10 +14,11 @@ users = db.collection('user');
 
 const router = app => {
 
-    app.get('/user', function (req, res) {
+    app.post('/user', function (req, res) {
+        console.log(req.body);
         let newUser = {
-            login: 'Tom',
-            password: '12345'
+            login: req.body.login,
+            password: req.body.password
         };
         users.insert(newUser, function (err, result) {
             if (err) {
@@ -30,9 +31,8 @@ const router = app => {
 
 
         app.get('/users', function(req, res) {
-            users.find({login: "Tom"}).toArray(function (err, docs) {
+            users.find().toArray(function (err, docs) {
                 if (err) {
-                    console.log(err);
                     return res.sendStatus(500);
                 }
                 res.send(docs);

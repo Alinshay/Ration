@@ -36,6 +36,7 @@ let LogInForm = props => {
                 label="Password"
                 validate={[required]}
             />
+
             <div>
                 <button type="submit" disabled={submitting}>
                     Sign In
