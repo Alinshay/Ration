@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import { Field, reduxForm} from 'redux-form';
-import {signIn, trySignIn} from "../actions/actions";
+import {throwError, trySignIn} from "../actions/actions";
 
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
@@ -57,17 +57,20 @@ class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.submit = this.submit.bind(this);
-        this.state = {error: ''};
+    }
+
+    componentDidMount() {
+        this.props.cleanError('');
     }
 
     submit(values) {
-        this.setState({error: this.props.signIn(values.login, values.password)})
+       this.props.signIn(values.login, values.password);
     }
 
     render(){
         return(
             <div className="SignIn">
-                <p>{this.state.error}</p>
+                <p>{this.props.error}</p>
                 <LogInForm onSubmit={this.submit} />
             </div>
         );
@@ -78,12 +81,14 @@ class SignIn extends React.Component {
 const mapStateToProps = (state) => {
     return {
         signed: state.logic.signed,
+        error: state.logic.error,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         signIn: (login, password) => dispatch(trySignIn(login,password)),
+        cleanError: (script) => dispatch(throwError(script))
     };
 };
 

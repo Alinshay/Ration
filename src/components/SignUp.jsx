@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import { Field, reduxForm} from 'redux-form';
-import {trySignUp} from "../actions/actions";
+import {throwError, trySignUp} from "../actions/actions";
 
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
@@ -9,6 +9,7 @@ const email = value =>
     value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
         ? 'Invalid email address'
         : undefined;
+
 
 
 const renderField = ({input, label, type, meta: { touched, error}}) => (
@@ -72,6 +73,10 @@ class SignUp extends React.Component {
         this.submit = this.submit.bind(this);
     }
 
+    componentDidMount() {
+        this.props.cleanError('');
+    }
+
     submit(values) {
         this.props.trySighUp(values.email, values.password);
     }
@@ -79,6 +84,7 @@ class SignUp extends React.Component {
     render(){
         return(
             <div className="SignUp">
+                <p>{this.props.error}</p>
                 <RegisterForm onSubmit={this.submit} />
             </div>
         );
@@ -88,12 +94,14 @@ class SignUp extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        error: state.logic.error,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         trySighUp: (login, password) => dispatch(trySignUp(login,password)),
+        cleanError: (script) => dispatch(throwError(script))
     };
 };
 

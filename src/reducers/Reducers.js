@@ -5,7 +5,8 @@ import {ENTRANCE,
 
 const initState = {
     signed: parseInt(document.cookie.replace(/(?:(?:^|.*;\s*)signed\s*\=\s*([^;]*).*$)|^.*$/, "$1")),
-    login: document.cookie.replace(/(?:(?:^|.*;\s*)login\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+    login: document.cookie.replace(/(?:(?:^|.*;\s*)login\s*\=\s*([^;]*).*$)|^.*$/, "$1"),
+    error: ''
 };
 
 
@@ -16,6 +17,9 @@ const Reducer1 = (state = initState, action) => {
 
     if(action.type === EXIT)
         return{...state, login: '', signed: 0};
+
+    if(action.type === 'ERROR')
+        return{...state, error: action.error};
 
     return state;
 };
