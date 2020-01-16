@@ -4,6 +4,7 @@ import LogIn from './SignIn'
 import Register from "./SignUp";
 import LoginForm from "./LoginFrom";
 import PersonalAccount from "./PersonalAccount";
+import PersonalInfo from "./PersonalInfo";
 
 
 
@@ -17,7 +18,7 @@ class Home extends React.Component {
                 <LoginForm/>
             </div>
         );
-        else return( <PersonalAccount/> )
+        else return( <PersonalInfo/> )
     }
 
 }

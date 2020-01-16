@@ -65,16 +65,16 @@ input:checked + label { text-decoration: underline pink; color: white;}
   margin: 30px;
 }
 
-.personalInfo label+div div input:active{border: 1px solid firebrick;}
+.personalInfo label+ div{
+  display: inline-block;
+}
 
-.personalInfo .button {border: 1px solid black;  margin: 20px; display: block; width: 200px; }
+.personalInfo label{
+  font-size: 18px;
+  font-weight: bold;
+}
 
 
-.personalInfo div + label, form + label {
-  border: none;
-  font-size: 20px;
-  font-weight: bold;}
-
-.personalInfo  input[type=radio] {
-  display: none;
+.personalInfo input, select{
+  margin: 12px 0;
 }

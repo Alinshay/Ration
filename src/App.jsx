@@ -9,6 +9,8 @@ import './App.css';
 import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import rootReducer from "./reducers/Reducers.js";
+import PersonalInfoChange from "./components/PersonalInfoChange";
+import PersonalInfo from "./components/PersonalInfo";
 
 
 
@@ -22,6 +24,8 @@ function App() {
               <BrowserRouter>
                   <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/profileInfoChange" component={PersonalInfoChange} />
+                    <Route exact path="/profileInfo" component={PersonalInfo} />
                   </Switch>
               </BrowserRouter>
          </Provider>

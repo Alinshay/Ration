@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import { Field, reduxForm} from 'redux-form';
-
+import {Link} from "react-router-dom";
 
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
@@ -29,54 +29,54 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
             type="number"
             component={renderField}
             label={false}
-        />
+        /> <br/>
 
-            <label>Sex</label>
-            <Field
-                name="sex"
-                type="radio"
-                component={renderField}
-                label="Male"
-                value="male"
-            />
-            <Field
-                name="sex"
-                type="radio"
-                component={renderField}
-                value="female"
-                label="Female"
-            />
+            <label> Sex </label>
+            <Field name="sex" component="select">
+                <option></option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </Field><br/>
 
         <label> Height </label>
         <Field
             name="height"
             type="number"
             component={renderField}
-        />
+        /><br/>
 
         <label> Weight </label>
         <Field
             name="weight"
             type="number"
             component={renderField}
-        />
+        /><br/>
 
             <label> Activity </label>
-            <Field name="activity" type="radio" component={renderField} label="Almost no" value="no" />
-            <Field name="activity" type="radio" component={renderField} label="1-2 times a week" value="below" />
-            <Field name="activity" type="radio" component={renderField} label="3 times a week" value="middle" />
-            <Field name="activity" type="radio" component={renderField} label="4-5 times a week" value="upper" />
-            <Field name="activity" type="radio" component={renderField} label="Every day" value="advance" />
+            <Field name="activity" component="select">
+                <option></option>
+                <option value="no">Almost no</option>
+                <option value="below">1-2 times a week</option>
+                <option value="middle">3 times a week</option>
+                <option value="upper">4-5 times a week</option>
+                <option value="advance">Every day</option>
+            </Field><br/>
 
             <label> Goal </label>
-            <Field name="goal" type="radio" component={renderField} label="Build muscle" value="muscle"/>
-            <Field name="goal" type="radio" component={renderField} label="Maintain weight" value="maintain"/>
-            <Field name="goal" type="radio" component={renderField} label="Lose weight" value="lose"/>
+            <Field name="goal" component="select">
+                <option></option>
+                <option value="no">Build muscle</option>
+                <option value="below">Maintain weight</option>
+                <option value="middle">Lose weight</option>
+            </Field><br/>
 
-                <div>
+        <div>
+            <Link to="/profileInfo">
         <button type="submit" disabled={submitting}>
+
            Save
         </button>
+            </Link>
         </div>
         </form>
     )
@@ -93,6 +93,7 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
         constructor(props) {
             super(props);
             this.submit = this.submit.bind(this);
+
         }
 
         submit(values) {
@@ -102,6 +103,7 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
         render(){
             return(
                 <div className="personalInfo">
+                <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button></h1>
                 <InfoForm />
                 </div>
         );
@@ -112,6 +114,7 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
     const mapStateToProps = (state) => {
         return {
             signed: state.logic.signed,
+            login: state.logic.login
         };
     };
 

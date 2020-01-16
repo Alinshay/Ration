@@ -51,7 +51,7 @@ export function trySignIn(login, password) {
                  if ((item.login === login) && (item.password === password)) {
                      match=1;
                  }
-                 console.log(item.login, item.password, login, password);
+
              });
 
 
@@ -68,6 +68,32 @@ export function trySignIn(login, password) {
 
 
 }
+
+/*
+export function tryUpdateInfo(login, data) {
+
+    return (dispatch) => {
+        fetch(`http://localhost:5000/updateInfo/%{login}`)
+
+            .then((response) => response.json())
+            .then ((response) => {
+                let match = 0;
+                response.forEach(item => {
+                    if ((item.login === login) && (item.password === password)) {
+                        match=1;
+                    }
+                });
+                if(match===1)
+                {   dispatch(signIn(login));
+                    document.cookie = `login=${login}`;
+                    document.cookie = `signed=1`;
+                }
+                else dispatch(throwError(`Wrong login or password`))
+            });
+    }
+}
+ */
+
 
 export function trySignUp(login, password) {
 
@@ -135,6 +161,6 @@ export function itemsFetchData(login) {
     };
 }
 
-/*добавить сообщение об ошибке, если вход не выполнен*/
+
 
 /*если данных нет - отправить сразу заполнять принудительно*/

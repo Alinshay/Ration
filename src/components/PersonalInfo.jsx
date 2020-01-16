@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {itemsFetchData} from "../actions/actions";
+import { Link } from 'react-router-dom';
 
 
 
@@ -29,13 +30,16 @@ import {itemsFetchData} from "../actions/actions";
             return(<h2>Loading...</h2>);
 
             return(<div className="personalInfo">
+                <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button></h1>
                 <h3> Age: {this.props.info.age}</h3>
                 <h3> Sex: {this.props.info.sex}</h3>
                 <h3> Height: {this.props.info.height}</h3>
                 <h3> Weight: {this.props.info.weight}</h3>
                 <h3> Activity: {this.props.info.activity}</h3>
                 <h3> Goal: {this.props.info.goal}</h3>
-            <button onClick={this.submit}> Change </button> </div>)
+                <Link to="/profileInfoChange">
+                    <button onClick={this.submit}> Change </button> </Link></div>)
+
         }
     }
 
