@@ -20,11 +20,11 @@
   margin: 20px 50px;
 }
 
-input[type=radio] {
+.loginForm input[type=radio] {
   display: none;
 }
 
-input{
+.loginForm input{
   opacity: 0.7;
   background: ghostwhite;
   width: 80%;
@@ -36,7 +36,7 @@ input{
 
 }
 
-label{
+.loginForm label{
   font-size: 25px;
   margin: 10px 10px 0 0;
 }
@@ -58,4 +58,23 @@ input:checked + label { text-decoration: underline pink; color: white;}
   display: block;
   font-size: 20px;
   color: white;
+}
+
+
+.personalInfo{
+  margin: 30px;
+}
+
+.personalInfo label+div div input:active{border: 1px solid firebrick;}
+
+.personalInfo .button {border: 1px solid black;  margin: 20px; display: block; width: 200px; }
+
+
+.personalInfo div + label, form + label {
+  border: none;
+  font-size: 20px;
+  font-weight: bold;}
+
+.personalInfo  input[type=radio] {
+  display: none;
 }

@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const express = require('express');
 
-let db,users;
+let db,users, user;
 
 MongoClient.connect('mongodb://user:user123@ds115798.mlab.com:15798/heroku_5x9fs53r', function (err, database) {
 if (err) {
@@ -10,6 +10,7 @@ if (err) {
 
 db = database.db("heroku_5x9fs53r");
 users = db.collection('user');
+user = db.collection('user_data');
 })
 
 const router = app => {
@@ -38,6 +39,15 @@ const router = app => {
                 res.send(docs);
             })
         });
+
+    app.get('/user/:login', function(req, res) {
+        user.find({"login": req.params.login}).toArray(function (err, docs) {
+            if (err) {
+                return res.sendStatus(500);
+            }
+            res.send(docs);
+        })
+    });
 
     app.use('/static', express.static('public'));
 }

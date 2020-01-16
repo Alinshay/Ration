@@ -1,66 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import { Field, reduxForm} from 'redux-form';
+import {itemsFetchData} from "../actions/actions";
 
 
 
-const required = value => (value || typeof value === 'number' ? undefined : 'Required');
-
-const renderField = ({input, label, type, meta: { touched, error}}) => (
-    <div>
-    <label>{label}</label>
-    <div>
-    <input {...input} placeholder={label} type={type} />
-{touched && (error && <span>{error}</span>)}
-    </div>
-    </div>
-)
-
-
-    let InfoForm = props => {
-        const { handleSubmit, submitting } = props;
-        return (
-
-        <form onSubmit={handleSubmit}>
-
-        <Field
-            name="age"
-            type="number"
-            component={renderField}
-            label="Age"
-            validate={[required]}
-        />
-
-        <Field
-            name="height"
-            type="number"
-            component={renderField}
-            label="Height"
-            validate={[required]}
-        />
-
-        <Field
-            name="weight"
-            type="number"
-            component={renderField}
-            label="Weight"
-            validate={[required]}
-        />
-
-
-                <div>
-        <button type="submit" disabled={submitting}>
-           Save
-        </button>
-        </div>
-        </form>
-    )
-    };
-
-
-    InfoForm = reduxForm({
-        form: 'info'
-    })(InfoForm);
 
 
     class PersonalInfo extends React.Component {
@@ -70,28 +13,46 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
             this.submit = this.submit.bind(this);
         }
 
+        componentDidMount() {
+            this.props.fetchData(this.props.login);
+        }
+
         submit(values) {
 
         }
 
         render(){
-            return(
-                <div className="personalInfo">
-                <InfoForm />
-                </div>
-        );
+
+            if(this.props.hasErrored === true)
+                return(<h2>Error</h2>);
+            if(this.props.isLoading === true)
+            return(<h2>Loading...</h2>);
+
+            return(<div className="personalInfo">
+                <h3> Age: {this.props.info.age}</h3>
+                <h3> Sex: {this.props.info.sex}</h3>
+                <h3> Height: {this.props.info.height}</h3>
+                <h3> Weight: {this.props.info.weight}</h3>
+                <h3> Activity: {this.props.info.activity}</h3>
+                <h3> Goal: {this.props.info.goal}</h3>
+            <button onClick={this.submit}> Change </button> </div>)
         }
     }
 
 
     const mapStateToProps = (state) => {
         return {
+            login: state.logic.login,
             signed: state.logic.signed,
+            isLoading: state.logic.isLoading,
+            hasErrored: state.logic.hasErrored,
+            info: state.logic.info
         };
     };
 
     const mapDispatchToProps = (dispatch) => {
         return {
+            fetchData: (url) => dispatch(itemsFetchData(url)),
         };
     };
 
