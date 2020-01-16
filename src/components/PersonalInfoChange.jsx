@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import { Field, reduxForm} from 'redux-form';
 import {Link} from "react-router-dom";
+import {tryExit} from "../actions/actions";
 
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
@@ -93,6 +94,7 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
         constructor(props) {
             super(props);
             this.submit = this.submit.bind(this);
+            this.exit = this.exit.bind(this);
 
         }
 
@@ -100,10 +102,14 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
 
         }
 
+        exit() {
+            this.props.signOut();
+        }
+
         render(){
             return(
                 <div className="personalInfo">
-                <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button></h1>
+                    <h1> Personal Account {this.props.login} <Link to="/"><button onClick={this.exit} >Log Out</button></Link></h1>
                 <InfoForm />
                 </div>
         );
@@ -120,6 +126,7 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
 
     const mapDispatchToProps = (dispatch) => {
         return {
+            signOut: () => dispatch(tryExit()),
         };
     };
 

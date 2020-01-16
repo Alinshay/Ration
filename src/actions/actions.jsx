@@ -146,8 +146,7 @@ export function itemsFetchDataSuccess(info) {
 export function itemsFetchData(login) {
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
-
-        fetch(`http://localhost:5000/user/${login}`)
+        setTimeout(()=>{fetch(`http://localhost:5000/user/${login}`)
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
@@ -157,7 +156,8 @@ export function itemsFetchData(login) {
             })
             .then((response) => response.json())
             .then((items) => {if(items.length>0) dispatch(itemsFetchDataSuccess(items[0])); else  dispatch(itemsFetchDataSuccess({age: 0, height: 0, weight: 0, sex: '', activity: '', goal: ''}))})
-            .catch(() => dispatch(itemsHasErrored(true)));
+            .catch(() => dispatch(itemsHasErrored(true)));}, 1000)
+
     };
 }
 

@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
-import {itemsFetchData} from "../actions/actions";
+import {itemsFetchData, tryExit} from "../actions/actions";
 import { Link } from 'react-router-dom';
-
+import '../animation.css';
 
 
 
@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
         constructor(props) {
             super(props);
             this.submit = this.submit.bind(this);
+            this.exit = this.exit.bind(this);
         }
 
         componentDidMount() {
@@ -22,15 +23,27 @@ import { Link } from 'react-router-dom';
 
         }
 
+        exit() {
+            this.props.signOut();
+        }
+
         render(){
 
             if(this.props.hasErrored === true)
                 return(<h2>Error</h2>);
             if(this.props.isLoading === true)
-            return(<h2>Loading...</h2>);
+            return(<h2>
+                <div className="cssload-preloader cssload-loading">
+                    <span className="cssload-slice"> </span>
+                    <span className="cssload-slice"> </span>
+                    <span className="cssload-slice"> </span>
+                    <span className="cssload-slice"> </span>
+                    <span className="cssload-slice"> </span>
+                    <span className="cssload-slice"> </span>
+                </div></h2>);
 
             return(<div className="personalInfo">
-                <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button></h1>
+                <h1> Personal Account {this.props.login} <Link to="/"><button onClick={this.exit}> Log Out</button> </Link></h1>
                 <h3> Age: {this.props.info.age}</h3>
                 <h3> Sex: {this.props.info.sex}</h3>
                 <h3> Height: {this.props.info.height}</h3>
@@ -56,7 +69,8 @@ import { Link } from 'react-router-dom';
 
     const mapDispatchToProps = (dispatch) => {
         return {
-            fetchData: (url) => dispatch(itemsFetchData(url)),
+            fetchData: (login) => dispatch(itemsFetchData(login)),
+            signOut: () => dispatch(tryExit()),
         };
     };
 
