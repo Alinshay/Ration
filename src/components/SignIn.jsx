@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import { Field, reduxForm} from 'redux-form';
-import {throwError, trySignIn} from "../actions/actions";
+import {sendInfo, throwError, trySignIn} from "../actions/actions";
 
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
@@ -82,6 +82,8 @@ const mapStateToProps = (state) => {
     return {
         signed: state.logic.signed,
         error: state.logic.error,
+        login: state.logic.login,
+        info: state.logic.info
     };
 };
 

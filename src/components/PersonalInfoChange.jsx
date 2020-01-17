@@ -2,8 +2,10 @@ import React from "react";
 import {connect} from "react-redux";
 import { Field, reduxForm} from 'redux-form';
 import {Link} from "react-router-dom";
-import {tryExit} from "../actions/actions";
+import {tryExit, updateInfo } from "../actions/actions";
 
+
+let data = {age: 10, height: 10, weight: 10, sex: '', activity: null, goal: null}
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 
@@ -12,7 +14,7 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
     <label>{label}</label>
     <div>
     <input {...input} placeholder={label} type={type} />
-{touched && (error && <span>{error}</span>)}
+    {touched && (error && <span>{error}</span>)}
     </div>
     </div>
 )
@@ -23,12 +25,12 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
         return (
 
         <form onSubmit={handleSubmit}>
-        <div> </div>
+
         <label> Age </label>
         <Field
             name="age"
             type="number"
-            component={renderField}
+            component="input"
             label={false}
         /> <br/>
 
@@ -56,27 +58,31 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
             <label> Activity </label>
             <Field name="activity" component="select">
                 <option></option>
-                <option value="no">Almost no</option>
-                <option value="below">1-2 times a week</option>
-                <option value="middle">3 times a week</option>
-                <option value="upper">4-5 times a week</option>
-                <option value="advance">Every day</option>
+                <option value="Almost no">Almost no</option>
+                <option value="1-2 times a week">1-2 times a week</option>
+                <option value="3 times a week">3 times a week</option>
+                <option value="4-5 times a week">4-5 times a week</option>
+                <option value="Every day">Every day</option>
             </Field><br/>
 
             <label> Goal </label>
             <Field name="goal" component="select">
                 <option></option>
-                <option value="no">Build muscle</option>
-                <option value="below">Maintain weight</option>
-                <option value="middle">Lose weight</option>
+                <option value="Build muscle">Build muscle</option>
+                <option value="Maintain weight">Maintain weight</option>
+                <option value="Lose weight">Lose weight</option>
             </Field><br/>
 
         <div>
-            <Link to="/profileInfo">
         <button type="submit" disabled={submitting}>
-
            Save
         </button>
+
+
+            <Link to="/profileInfo">
+                <button type="button" disabled={submitting}>
+                    Cancel
+                </button>
             </Link>
         </div>
         </form>
@@ -89,17 +95,18 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
     })(InfoForm);
 
 
+
     class PersonalInfoChange extends React.Component {
 
         constructor(props) {
             super(props);
             this.submit = this.submit.bind(this);
             this.exit = this.exit.bind(this);
-
         }
 
-        submit(values) {
-
+        submit(value) {
+            this.props.updateInfo(this.props.login, value);
+            console.log(this.props.mas);
         }
 
         exit() {
@@ -107,10 +114,11 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
         }
 
         render(){
+
             return(
                 <div className="personalInfo">
                     <h1> Personal Account {this.props.login} <Link to="/"><button onClick={this.exit} >Log Out</button></Link></h1>
-                <InfoForm />
+                    <InfoForm onSubmit={this.submit}/>
                 </div>
         );
         }
@@ -120,13 +128,16 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
     const mapStateToProps = (state) => {
         return {
             signed: state.logic.signed,
-            login: state.logic.login
+            login: state.logic.login,
+            info: state.logic.info,
+            mas: state.form
         };
     };
 
     const mapDispatchToProps = (dispatch) => {
         return {
             signOut: () => dispatch(tryExit()),
+            updateInfo: (login, data) => dispatch(updateInfo(login, data))
         };
     };
 

@@ -49,6 +49,40 @@ const router = app => {
         })
     });
 
+    app.post('/info/:login', function(req, res) {
+        console.log(req.body);
+        let newInfo = {
+            login: req.body.login,
+            age: req.body.age,
+            sex: req.body.sex,
+            weight: req.body.weight,
+            height: req.body.height,
+            activity: req.body.activity,
+            goal: req.body.goal,
+        };
+        user.insert(newInfo, function (err, result) {
+            if (err) {
+                console.log(err);
+                return res.sendStatus(500);
+            }
+            res.send(`New info was added`);
+        })
+    });
+
+    app.post('/update/:login', function(req, res) {
+        user.update({login: req.body.login},
+            {   login: req.body.login,
+                age: req.body.age,
+                sex: req.body.sex,
+                weight: req.body.weight,
+                height: req.body.height,
+                activity: req.body.activity,
+                goal: req.body.goal,},
+            {upsert: true})
+    });
+
+
+
     app.use('/static', express.static('public'));
 }
 

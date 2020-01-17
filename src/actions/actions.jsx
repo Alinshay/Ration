@@ -5,10 +5,19 @@ import {
 } from './action-types';
 
 
+export const load = data => ({ type: 'LOAD', data })
+
 function signIn(login) {
     return {
         type: ENTRANCE,
         login
+    };
+}
+
+function update(info) {
+    return {
+        type: 'UPDATE_INFO',
+        info
     };
 }
 
@@ -116,11 +125,52 @@ export function trySignUp(login, password) {
                 post_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 post_request.send(data);
                 dispatch(trySignIn(login, password));
+                sendInfo(login, {age: 0, height: 0, weight: 0, sex: '', activity: '', goal: ''});
             }
             else dispatch(throwError(`You've already have an account`))}
             )
     }
 }
+
+
+export function sendInfo(login, info) {
+
+    //return (dispatch) => {
+                    console.log(1);
+                    let data = '&login=' + encodeURIComponent(login)
+                        + '&age=' + encodeURIComponent(info.age)
+                        + '&sex=' + encodeURIComponent(info.sex)
+                        + '&height=' + encodeURIComponent(info.height)
+                        + '&weight=' + encodeURIComponent(info.weight)
+                        + '&activity=' + encodeURIComponent(info.activity)
+                        + '&goal=' + encodeURIComponent(info.goal);
+                    const post_request = new XMLHttpRequest();
+                    post_request.open('POST', `http://localhost:5000/info/${login}`, true);
+                    post_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    post_request.send(data);
+               //dispatch(throwError(`You've already have an account`))
+
+    //}
+}
+
+export function updateInfo(login, info) {
+
+    return (dispatch) => {
+        let data = '&login=' + encodeURIComponent(login)
+        + '&age=' + encodeURIComponent(info.age)
+        + '&sex=' + encodeURIComponent(info.sex)
+        + '&height=' + encodeURIComponent(info.height)
+        + '&weight=' + encodeURIComponent(info.weight)
+        + '&activity=' + encodeURIComponent(info.activity)
+        + '&goal=' + encodeURIComponent(info.goal);
+    const post_request = new XMLHttpRequest();
+    post_request.open('POST', `http://localhost:5000/update/${login}`, true);
+    post_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    post_request.send(data);
+    dispatch(update(info));
+    }
+}
+
 
 export function itemsHasErrored(bool) {
     return {

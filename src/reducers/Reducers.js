@@ -30,15 +30,18 @@ const Reducer1 = (state = initState, action) => {
     if(action.type ==='ITEMS_IS_LOADING')
         return{...state, isLoading: true};
 
+    if(action.type ==='UPDATE_INFO')
+        return{...state, info: action.info};
+
+
     if(action.type==='ITEMS_FETCH_DATA_SUCCESS')
         return{...state, info: action.info, isLoading: false};
 
     return state;
 };
 
+
 const Reducer2 = (state = initState, action) => { return state;};
-
-
 
 const rootReducer = combineReducers({ logic: Reducer1, form: formReducer });
 

@@ -7,11 +7,9 @@ import {Provider} from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home.jsx';
-import Navbar from './components/Navbar.jsx';
 import rootReducer from "./reducers/Reducers.js";
 import PersonalInfoChange from "./components/PersonalInfoChange";
 import PersonalInfo from "./components/PersonalInfo";
-
 
 
 const store = createStore(rootReducer, composeWithDevTools(
