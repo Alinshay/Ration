@@ -1,8 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import {itemsFetchData, tryExit} from "../actions/actions";
+import {itemsFetchData} from "../actions/actions";
 import { Link } from 'react-router-dom';
 import '../animation.css';
+
 
 
 
@@ -12,7 +13,6 @@ import '../animation.css';
         constructor(props) {
             super(props);
             this.submit = this.submit.bind(this);
-            this.exit = this.exit.bind(this);
         }
 
         componentDidMount() {
@@ -21,10 +21,6 @@ import '../animation.css';
 
         submit(values) {
 
-        }
-
-        exit() {
-            this.props.signOut();
         }
 
         render(){
@@ -42,8 +38,8 @@ import '../animation.css';
                     <span className="cssload-slice"> </span>
                 </div></h2>);
 
-            return(<div className="personalInfo">
-                <h1> Personal Account {this.props.login} <Link to="/"><button onClick={this.exit}> Log Out</button> </Link></h1>
+            return(
+                <div className="personalInfo">
                 <h3> Age: {this.props.info.age}</h3>
                 <h3> Sex: {this.props.info.sex}</h3>
                 <h3> Height: {this.props.info.height}</h3>
@@ -51,7 +47,8 @@ import '../animation.css';
                 <h3> Activity: {this.props.info.activity}</h3>
                 <h3> Goal: {this.props.info.goal}</h3>
                 <Link to="/profileInfoChange">
-                    <button onClick={this.submit}> Change </button> </Link></div>)
+                <button onClick={this.submit}> Change </button> </Link></div>
+                )
 
         }
     }
@@ -70,7 +67,6 @@ import '../animation.css';
     const mapDispatchToProps = (dispatch) => {
         return {
             fetchData: (login) => dispatch(itemsFetchData(login)),
-            signOut: () => dispatch(tryExit()),
         };
     };
 

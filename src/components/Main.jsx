@@ -1,30 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PersonalInfo from "./PersonalInfo";
-import {tryExit} from "../actions/actions";
-import PersonalInfoChange from "./PersonalInfoChange";
 import NavBar from "./Navbar";
+import {tryExit} from "../actions/actions";
 
-class PersonalAccount extends React.Component {
+
+
+class Main extends React.Component {
 
     constructor(props) {
         super(props);
         this.exit = this.exit.bind(this);
-        this.state={info: true}
     }
 
     exit() {
         this.props.signOut();
-        this.props.history.push('/');
     }
-
     render(){
-        return( <div className="personalAccount">
+        return(
+            <div className="personalAccount">
                 <NavBar/> <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button> </h1>
-            <PersonalInfo/>
+            <div className="Main"> </div>
             </div>
-         )
-
+        )
     }
 
 }
@@ -32,7 +29,6 @@ class PersonalAccount extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        signed: state.logic.signed,
         login: state.logic.login,
     };
 };
@@ -43,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PersonalAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

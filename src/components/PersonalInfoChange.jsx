@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import { Field, reduxForm} from 'redux-form';
 import {Link} from "react-router-dom";
 import {tryExit, updateInfo } from "../actions/actions";
+import NavBar from "./Navbar";
 
 
 let data = {age: 10, height: 10, weight: 10, sex: '', activity: null, goal: null}
@@ -111,14 +112,17 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
 
         exit() {
             this.props.signOut();
+            this.props.history.push('/');
         }
 
         render(){
 
             return(
+                <div className="personalAccount">
+                    <NavBar/> <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button></h1>
                 <div className="personalInfo">
-                    <h1> Personal Account {this.props.login} <Link to="/"><button onClick={this.exit} >Log Out</button></Link></h1>
                     <InfoForm onSubmit={this.submit}/>
+                </div>
                 </div>
         );
         }

@@ -10,6 +10,10 @@ import Home from './components/Home.jsx';
 import rootReducer from "./reducers/Reducers.js";
 import PersonalInfoChange from "./components/PersonalInfoChange";
 import PersonalInfo from "./components/PersonalInfo";
+import PersonalAccount from "./components/PersonalAccount";
+import Main from "./components/Main";
+import Challenge from "./components/Challenge";
+import Calculator from "./components/Calculator";
 
 
 const store = createStore(rootReducer, composeWithDevTools(
@@ -22,8 +26,11 @@ function App() {
               <BrowserRouter>
                   <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/profile" component={PersonalAccount} />
                     <Route exact path="/profileInfoChange" component={PersonalInfoChange} />
-                    <Route exact path="/profileInfo" component={PersonalInfo} />
+                      <Route exact path="/main" component={Main} />
+                      <Route exact path="/challenge" component={Challenge} />
+                      <Route exact path="/calculator" component={Calculator} />
                   </Switch>
               </BrowserRouter>
          </Provider>

@@ -5,6 +5,7 @@ import Register from "./SignUp";
 import LoginForm from "./LoginFrom";
 import PersonalAccount from "./PersonalAccount";
 import PersonalInfo from "./PersonalInfo";
+import Main from "./Main";
 
 
 
@@ -18,10 +19,10 @@ class Home extends React.Component {
                 <LoginForm/>
             </div>
         );
-        else return( <PersonalInfo/> )
+        else return( <Main/> )
     }
 
-}
+}/*перейти по ссылке*/
 
 
 const mapStateToProps = (state) => {
