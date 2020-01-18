@@ -14,6 +14,7 @@ import PersonalAccount from "./components/PersonalAccount";
 import Main from "./components/Main";
 import Challenge from "./components/Challenge";
 import Calculator from "./components/Calculator";
+import Navbar from "./components/Navbar";
 
 
 const store = createStore(rootReducer, composeWithDevTools(
@@ -30,6 +31,7 @@ function App() {
                     <Route exact path="/profileInfoChange" component={PersonalInfoChange} />
                       <Route exact path="/main" component={Main} />
                       <Route exact path="/challenge" component={Challenge} />
+                      <Route exact path="/nav" component={Navbar} />
                       <Route exact path="/calculator" component={Calculator} />
                   </Switch>
               </BrowserRouter>

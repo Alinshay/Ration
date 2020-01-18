@@ -20,7 +20,11 @@ class PersonalAccount extends React.Component {
 
     render(){
         return( <div className="personalAccount">
-                <NavBar/> <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button> </h1>
+                <NavBar/>
+                <div className="name">
+                    <h3> {this.props.login}  </h3>
+                    <button onClick={this.exit} >Log Out</button>
+                </div>
             <PersonalInfo/>
             </div>
          )

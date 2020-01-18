@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NavBar from "./Navbar";
 import {tryExit} from "../actions/actions";
+import Calc_old from "./Calc_old";
 
 
 
@@ -18,10 +19,15 @@ class Calculator extends React.Component {
         this.props.history.push('/');
     }
     render(){
+        console.log(this.props.history);
         return(
             <div className="personalAccount">
-                <NavBar/> <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button></h1>
-        <div className="Calculator"> </div>
+                <NavBar/>
+                <div className="name">
+                <h3> {this.props.login}  </h3>
+                <button onClick={this.exit} >Log Out</button>
+                </div>
+        <div className="Calculator"> <Calc_old/></div>
             </div>
         )
     }

@@ -73,3 +73,21 @@ input:checked + label { text-decoration: underline pink; color: white;}
 .personalInfo input, select{
   margin: 12px 0;
 }
+
+
+.NavBar{
+  background: linear-gradient(45deg, palevioletred, Moccasin);
+  padding: 20px;
+}
+
+.name{
+position: absolute;
+  right: 5%;
+  top: 40px;
+}
+
+
+.NavBar .links a{
+  margin: 5px;
+  color: black;
+}

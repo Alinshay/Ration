@@ -6,7 +6,6 @@ import {tryExit} from "../actions/actions";
 
 
 class Main extends React.Component {
-
     constructor(props) {
         super(props);
         this.exit = this.exit.bind(this);
@@ -14,11 +13,17 @@ class Main extends React.Component {
 
     exit() {
         this.props.signOut();
+        this.props.history.push('/');
     }
+
     render(){
         return(
             <div className="personalAccount">
-                <NavBar/> <h1> Personal Account {this.props.login} <button onClick={this.exit} >Log Out</button> </h1>
+                <NavBar/>
+                <div className="name">
+                    <h3> {this.props.login}  </h3>
+                    <button onClick={this.exit} >Log Out</button>
+                </div>
             <div className="Main"> </div>
             </div>
         )
@@ -35,7 +40,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signOut: () => dispatch(tryExit()),
     };
 };
 

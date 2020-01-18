@@ -1,0 +1,63 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #2E8B57;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+#report{
+  position: absolute;
+  top: 150px;
+  right: 20px;
+  width: 45%;
+  background: #FFA07A;
+  padding: 10px;
+}
+
+
+#menu div{
+  padding: 5px;
+  font-size: 18px;
+}
+
+
+
+#db button{
+  border: 0 solid;
+  padding: 5px;
+  margin: 10px 0 0 20px;
+  font-size: 18px;
+  width: 45%;
+  text-align: left;
+
+}
+
+
+input{
+  margin: 20px 0 0 20px;
+  font-size: 20px;
+  padding: 5px;
+
+}
+
+nav{
+  margin: 10px;
+}
+
+
+
+#about{
+  margin: 10px;
+}
