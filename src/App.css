@@ -35,7 +35,7 @@
   font-size: 25px;
   margin: 10px 10px 0 0;
 }
-input:checked + label { text-decoration: underline pink; color: white;}
+.SignIn input:checked + label, .SignUp input:checked + label  { text-decoration: underline pink; color: white;}
 
 .SignIn label, .SignUp label{
   font-size: 15px;
@@ -91,3 +91,20 @@ position: absolute;
   margin: 5px;
   color: black;
 }
+
+.Challenge {
+  margin: 0 100px;
+}
+
+.Challenge label{
+
+
+}
+
+
+.day{
+  display: inline-block;
+  padding: 10px;
+}
+
+

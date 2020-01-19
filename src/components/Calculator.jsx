@@ -19,7 +19,6 @@ class Calculator extends React.Component {
         this.props.history.push('/');
     }
     render(){
-        console.log(this.props.history);
         return(
             <div className="personalAccount">
                 <NavBar/>
