@@ -27,8 +27,10 @@ class Challenge extends React.Component {
 
    getMonthChallenge(monthName, yearName) {
         let month = '';
-        let daysInMonth = new Date('01.10.2020').getMonth();//32 - new Date(this.getFullYear(), this.getMonth(), 32).getDate();
-
+        let date =  new Date(`${yearName}-${monthName}-01`);
+        let daysInMonth =32 - new Date(date.getFullYear(), date.getMonth(), 32).getDate();
+        console.log(daysInMonth);
+        //просчитать месяц и год
         for (let i = 1; i <= new Date().getDate(); i++) {
             if (i % 7 === 0)
                 if (this.state.data.m0120[i] == 1)
@@ -70,16 +72,16 @@ class Challenge extends React.Component {
                     <TabLink to="tab2">February</TabLink>
                     <TabLink to="tab3">March</TabLink>
 
-                        <TabContent for="tab1">
-                            {this.getMonthChallenge(1,20)}
-                        </TabContent>
+                    <TabContent for="tab1">
+                        {this.getMonthChallenge('01',2020)}
+                    </TabContent>
 
                     <TabContent for="tab2">
-                        {this.getMonthChallenge(2,20)}
+                        {this.getMonthChallenge('02',2020)}
                     </TabContent>
 
                     <TabContent for="tab3">
-                        {this.getMonthChallenge(3,20)}
+                        {this.getMonthChallenge('03',2020)}
                     </TabContent>
                 </Tabs>
 
@@ -89,6 +91,7 @@ class Challenge extends React.Component {
     }
 
 }
+
 
 
 const mapStateToProps = (state) => {

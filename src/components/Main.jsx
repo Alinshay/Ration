@@ -13,7 +13,7 @@ class Main extends React.Component {
 
     exit() {
         this.props.signOut();
-        this.props.history.push('/');
+        //this.props.history.push('/');
     }
 
     render(){
@@ -40,6 +40,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        signOut: () => dispatch(tryExit()),
     };
 };
 

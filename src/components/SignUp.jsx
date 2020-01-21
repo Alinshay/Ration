@@ -10,7 +10,13 @@ const email = value =>
         ? 'Invalid email address'
         : undefined;
 
+const password = value =>
+    value && !/(?=.*[a-zA-Z])(?=.*[0-9]){6,}/i.test(value)
+        ? 'Password must have 6 or more symbols and include a number'
+        : undefined;
 
+const passwordsMatch = (value, allValues) =>
+    value !== allValues.password ? 'Passwords don\'t match' : undefined;
 
 const renderField = ({input, label, type, meta: { touched, error}}) => (
     <div>
@@ -41,7 +47,7 @@ let RegisterForm = props => {
                 type="password"
                 component={renderField}
                 label="Password"
-                validate={[required]}
+                validate={[required, password]}
             />
 
             <Field
@@ -49,7 +55,7 @@ let RegisterForm = props => {
                 type="password"
                 component={renderField}
                 label="Confirm password"
-                validate={[required]}
+                validate={[required, passwordsMatch]}
             />
             <div>
                 <button type="submit" disabled={submitting}>

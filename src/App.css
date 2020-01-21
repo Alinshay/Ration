@@ -35,7 +35,7 @@
   font-size: 25px;
   margin: 10px 10px 0 0;
 }
-.SignIn input:checked + label, .SignUp input:checked + label  { text-decoration: underline pink; color: white;}
+.loginForm input:checked + label { text-decoration: underline pink; color: white;}
 
 .SignIn label, .SignUp label{
   font-size: 15px;
