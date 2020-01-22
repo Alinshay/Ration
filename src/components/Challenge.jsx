@@ -17,7 +17,10 @@ class Challenge extends React.Component {
     }
 
     componentDidMount() {
-       // this.setState({data: {month: [1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}})
+
+        fetch(`http://localhost:5000/user/${this.props.login}/challenge`)
+            .then((response) => response.json())
+            .then((response) =>console.log(response[0].m0y2020));
     }
 
     exit() {
@@ -29,9 +32,13 @@ class Challenge extends React.Component {
         let month = '';
         let date =  new Date(`${yearName}-${monthName}-01`);
         let daysInMonth =32 - new Date(date.getFullYear(), date.getMonth(), 32).getDate();
-        console.log(daysInMonth);
-        //просчитать месяц и год
+
         for (let i = 1; i <= new Date().getDate(); i++) {
+            //год <= нашего и месяц <= нашего
+
+            if((date.getMonth()<=new Date().getMonth())&&(date.getFullYear()===new Date().getFullYear())||(date.getFullYear()<new Date().getFullYear()))
+            {
+
             if (i % 7 === 0)
                 if (this.state.data.m0120[i] == 1)
                     month += `<input type="checkbox" id="${i}${monthName}${yearName}" checked/> <label for="${i}${monthName}${yearName}" class="check-box" >  </label> <br/>`
@@ -42,6 +49,12 @@ class Challenge extends React.Component {
                 month += `<input type="checkbox" id="${i}${monthName}${yearName}" checked/> <label for="${i}" class="check-box">  </label>`;
             else
                 month += `<input type="checkbox" id="${i}${monthName}${yearName}"/> <label for="${i}${monthName}${yearName}" class="check-box">  </label>`;
+        }
+        else
+            {if (i % 7 === 0)
+                month += `<input type="checkbox" id="${i}${monthName}${yearName}" disabled="true"/> <label for="${i}${monthName}${yearName}" class="check-box"> </label> <br/>`;
+            else
+                month += `<input type="checkbox" id="${i}${monthName}${yearName}" disabled="true"/> <label for="${i}${monthName}${yearName}" class="check-box"> </label> </div>`;}
         }
 
         for (let i = new Date().getDate() + 1; i <= daysInMonth; i++) {

@@ -104,6 +104,8 @@ const mapStateToProps = (state) => {
     };
 };
 
+
+
 const mapDispatchToProps = (dispatch) => {
     return {
         trySighUp: (login, password) => dispatch(trySignUp(login,password)),
