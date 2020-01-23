@@ -25,6 +25,7 @@ import '../animation.css';
 
         render(){
 
+
             if(this.props.hasErrored === true)
                 return(<h2>Error</h2>);
             if(this.props.isLoading === true)
@@ -40,6 +41,7 @@ import '../animation.css';
 
             return(
                 <div className="personalInfo">
+                <img src={this.props.info.img}/>
                 <h3> Age: {this.props.info.age}</h3>
                 <h3> Sex: {this.props.info.sex}</h3>
                 <h3> Height: {this.props.info.height}</h3>

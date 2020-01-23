@@ -9,7 +9,7 @@ const initState = {
     error: '',
     hasErrored: false,
     isLoading: false,
-    info: {age: 0, height: 0, weight: 0, sex: '', activity: '', goal: ''}
+    info: {age: 0, height: 0, weight: 0, sex: '', activity: '', goal: '', img: 'https://www.pngitem.com/pimgs/m/302-3028991_incognito-icon-fedora-incognito-clipart-hd-png-download.png'}
 };
 
 
@@ -32,7 +32,6 @@ const Reducer1 = (state = initState, action) => {
 
     if(action.type ==='UPDATE_INFO')
         return{...state, info: action.info};
-
 
     if(action.type==='ITEMS_FETCH_DATA_SUCCESS')
         return{...state, info: action.info, isLoading: false};

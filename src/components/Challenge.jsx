@@ -13,7 +13,7 @@ class Challenge extends React.Component {
         super(props);
         this.exit = this.exit.bind(this);
         this.getMonthChallenge = this.getMonthChallenge.bind(this);
-        this.state = {data: {m0120: [1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
+        this.state = {data: {m0y2020: [1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
     }
 
     componentDidMount() {
@@ -40,12 +40,12 @@ class Challenge extends React.Component {
             {
 
             if (i % 7 === 0)
-                if (this.state.data.m0120[i] == 1)
+                if (this.state.data.m0y2020[i] == 1)
                     month += `<input type="checkbox" id="${i}${monthName}${yearName}" checked/> <label for="${i}${monthName}${yearName}" class="check-box" >  </label> <br/>`
                 else
                     month += `<input type="checkbox" id="${i}${monthName}${yearName}"/> <label for="${i}${monthName}${yearName}" class="check-box">  </label> <br/>`
 
-            else if (this.state.data.m0120[i] == 1)
+            else if (this.state.data.m0y2020[i] == 1)
                 month += `<input type="checkbox" id="${i}${monthName}${yearName}" checked/> <label for="${i}" class="check-box">  </label>`;
             else
                 month += `<input type="checkbox" id="${i}${monthName}${yearName}"/> <label for="${i}${monthName}${yearName}" class="check-box">  </label>`;

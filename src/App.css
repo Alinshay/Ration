@@ -107,4 +107,9 @@ position: absolute;
   padding: 10px;
 }
 
-
+img {
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  box-shadow: 0 0 7px #666;
+}

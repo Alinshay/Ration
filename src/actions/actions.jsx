@@ -125,7 +125,7 @@ export function trySignUp(login, password) {
                 post_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 post_request.send(data);
                 dispatch(trySignIn(login, password));
-                sendInfo(login, {age: 0, height: 0, weight: 0, sex: '', activity: '', goal: ''});
+                sendInfo(login, {age: 0, height: 0, weight: 0, sex: '', activity: '', goal: '', img: 'https://www.pngitem.com/pimgs/m/302-3028991_incognito-icon-fedora-incognito-clipart-hd-png-download.png'});
             }
             else dispatch(throwError(`You've already have an account`))}
             )
@@ -136,14 +136,14 @@ export function trySignUp(login, password) {
 export function sendInfo(login, info) {
 
     //return (dispatch) => {
-                    console.log(1);
                     let data = '&login=' + encodeURIComponent(login)
                         + '&age=' + encodeURIComponent(info.age)
                         + '&sex=' + encodeURIComponent(info.sex)
                         + '&height=' + encodeURIComponent(info.height)
                         + '&weight=' + encodeURIComponent(info.weight)
                         + '&activity=' + encodeURIComponent(info.activity)
-                        + '&goal=' + encodeURIComponent(info.goal);
+                        + '&goal=' + encodeURIComponent(info.goal)
+                        + '&img=' + encodeURIComponent(info.img);
                     const post_request = new XMLHttpRequest();
                     post_request.open('POST', `http://localhost:5000/info/${login}`, true);
                     post_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -154,7 +154,6 @@ export function sendInfo(login, info) {
 }
 
 export function updateInfo(login, info) {
-
     return (dispatch) => {
         let data = '&login=' + encodeURIComponent(login)
         + '&age=' + encodeURIComponent(info.age)
@@ -162,11 +161,13 @@ export function updateInfo(login, info) {
         + '&height=' + encodeURIComponent(info.height)
         + '&weight=' + encodeURIComponent(info.weight)
         + '&activity=' + encodeURIComponent(info.activity)
-        + '&goal=' + encodeURIComponent(info.goal);
+        + '&goal=' + encodeURIComponent(info.goal)
+        + '&img=' + encodeURIComponent(info.img);
     const post_request = new XMLHttpRequest();
     post_request.open('POST', `http://localhost:5000/update/${login}`, true);
     post_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     post_request.send(data);
+    console.log(data);
     dispatch(update(info));
     }
 }
@@ -205,7 +206,7 @@ export function itemsFetchData(login) {
                 return response;
             })
             .then((response) => response.json())
-            .then((items) => {if(items.length>0) dispatch(itemsFetchDataSuccess(items[0])); else  dispatch(itemsFetchDataSuccess({age: 0, height: 0, weight: 0, sex: '', activity: '', goal: ''}))})
+            .then((items) => {if(items.length>0) dispatch(itemsFetchDataSuccess(items[0])); else  dispatch(itemsFetchDataSuccess({age: 0, height: 0, weight: 0, sex: '', activity: '', goal: '', img: 'https://www.pngitem.com/pimgs/m/302-3028991_incognito-icon-fedora-incognito-clipart-hd-png-download.png'}))})
             .catch(() => dispatch(itemsHasErrored(true)));}, 1000)
 
     };

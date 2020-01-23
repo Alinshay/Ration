@@ -27,6 +27,14 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
 
         <form onSubmit={handleSubmit}>
 
+            <label> Photo Link </label>
+            <Field
+                name="img"
+                type="string"
+                component="input"
+                label={false}
+            /> <br/>
+
         <label> Age </label>
         <Field
             name="age"
@@ -107,7 +115,8 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
 
         submit(value) {
             this.props.updateInfo(this.props.login, value);
-            console.log(this.props.mas);
+            //console.log(this.props.mas);
+            this.props.history.push('/profile');
         }
 
         exit() {
@@ -124,6 +133,7 @@ const renderField = ({input, label, type, meta: { touched, error}}) => (
                         <h3> {this.props.login}  </h3>
                         <button onClick={this.exit} >Log Out</button>
                     </div>
+
                 <div className="personalInfo">
                     <InfoForm onSubmit={this.submit}/>
                 </div>

@@ -69,6 +69,7 @@ const router = app => {
             height: req.body.height,
             activity: req.body.activity,
             goal: req.body.goal,
+            img: req.body.img
         };
         user.insert(newInfo, function (err, result) {
             if (err) {
@@ -87,7 +88,8 @@ const router = app => {
                 weight: req.body.weight,
                 height: req.body.height,
                 activity: req.body.activity,
-                goal: req.body.goal,},
+                goal: req.body.goal,
+                img: req.body.img},
             {upsert: true})
     });
 
